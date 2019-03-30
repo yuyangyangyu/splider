@@ -10,7 +10,9 @@ public class city_name {
 	private Document doc;
 	private List<String> mlist_name=new ArrayList<>();//名称
 	private List<String> mlist_http=new ArrayList<>();//网页
-	//用于读取中国城市名称和网页链接
+	/**
+	 * 读取中国城市名称和网页链接
+	 */
 	public void Search_city() {
 		try{
 			doc = Jsoup.connect("http://you.ctrip.com/sitelist/china110000.html")
