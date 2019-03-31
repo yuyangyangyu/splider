@@ -10,7 +10,8 @@ import org.jsoup.select.Elements;
 public class Attraction_detail {
 	private Document document;
 	private Elements elements;
-	private Elements elements2;
+	private Element elements2;
+	private Elements elements3;
 	/**
 	 * 获取具体景点的详情页
 	 * @param url
@@ -22,9 +23,11 @@ public class Attraction_detail {
 					.header("Connection", "close")//如果是这种方式，这里务必带上
 					.timeout(8000)//超时时间
 					.get();
-			Elements elements=document.select("div.detailcon").select("ul");
-			Element elements2=document.select("div.toggle_s").select("[itemprop=description]").first();
-			System.out.println(elements2.text());
+			 elements=document.select("div.detailcon").select("ul");
+			 elements2=document.select("div.toggle_s").select("[itemprop=description]").first();
+			 elements3=document.select("div.item").select("a[href]");
+			System.out.println(elements3.attr("href"));
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -44,5 +47,11 @@ public String Highlight() {
 public String detail() {
 	return elements2.text();
 }
-
+/**
+ * 返回景点的高清图片
+ * @return
+ */
+public String img_HD() {
+	return "https://you.ctrip.com/"+elements3.attr("href");
+}
 }
