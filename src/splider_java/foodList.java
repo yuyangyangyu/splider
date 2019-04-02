@@ -12,21 +12,26 @@ public class foodList {
 	private List<String> nameList=new ArrayList<String>();
 	private List<String> httpList=new ArrayList<String>();
 	private List<String> describeList=new ArrayList<String>();
+	private List<String> imgList=new ArrayList<String>();
 	private List<String[]> Recommend=new ArrayList<String[]>();
 	private Elements elements;
 	private Elements elements2;
 	private Elements elements3;
+	private Elements elements4;
 	public void Search(String url) {
 		try {
 			Document document=Jsoup.connect(url).get();
 			elements=document.select("div.rdetailbox").select("dt").select("a");
 			elements2=document.select("div.rdetailbox").select("dd");
 			elements3=document.select("p.bottomcomment");
-			//System.out.println(elements3);
+			elements4=document.select("div.leftimg").select("img");
+			//System.out.println(elements4.attr("data-imgurl"));
 			for (int i = 0; i < elements.size(); i++) {
 				httpList.add("https://you.ctrip.com/fooditem/"+elements.get(i).attr("href"));
 				nameList.add(elements.get(i).text());
 				describeList.add(elements2.text().replace("详情", ""));
+				imgList.add(elements4.get(i).attr("data-imgurl"));
+				System.out.println(elements4.get(i).attr("data-imgurl"));
 			}
 			//Element elements_1=elements3.get(1);
 			//System.out.println(elements3);
