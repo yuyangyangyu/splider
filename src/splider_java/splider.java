@@ -10,8 +10,8 @@ import org.jsoup.select.Elements;
 
 public class splider {
 	public static void main(String[] args) {
-		Attraction_detail attraction_detail=new Attraction_detail();
-		attraction_detail.Search("https://you.ctrip.com/sight/chongqing158/10386.html");
+	Attractions attractions=new Attractions();
+	attractions.Search("https://you.ctrip.com/sight/chongqing158.html");
 			
 	}
 }

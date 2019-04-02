@@ -14,6 +14,7 @@ public class Attractions {
 	private List<String> imgList=new ArrayList<String>();
 	private List<String> nameList=new ArrayList<String>();
 	private List<String> detaillList=new ArrayList<String>();
+	private List<String> scoreList= new ArrayList<String>();
 	/**
 	 * 通过传入一个城市的URL，获取城市的景点信息（默认15个）
 	 * @param url
@@ -29,6 +30,7 @@ public class Attractions {
 			Elements elements=document.select("div.list_wide_mod2").select("div.leftimg");
 			//获取景点名称和地点信息
 			Elements elements_2=document.select("div.list_wide_mod2").select("dl");
+			Elements elements_3=document.select("a.score").select("strong");
 			for (int i = 0; i < elements.size(); i++) {
 				//添加景点的详细介绍网页
 				httpList.add("https://you.ctrip.com"+elements.get(i).select("a").attr("href"));
@@ -38,8 +40,9 @@ public class Attractions {
 				nameList.add(elements_2.get(i).select("a").text());
 				//添加详情地点
 				detaillList.add(elements_2.get(i).select("dd.ellipsis").text());
-				//System.out.println(elements_2.get(i).select("dd.ellipsis").text());
-			}
+				//添加景点的评分情况
+				scoreList.add(elements_3.text());
+			}System.out.println(elements_3);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -72,5 +75,12 @@ public class Attractions {
 	 */
 	public List<String> detail() {
 		return detaillList;
+	}
+	/**
+	 * 返回景点的评分情况
+	 * @return
+	 */
+	public List<String> score() {
+		return scoreList;
 	}
 }

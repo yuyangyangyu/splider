@@ -11,7 +11,7 @@ public class Attraction_detail {
 	private Document document;
 	private Elements elements;
 	private Element elements2;
-	private Elements elements3;
+	private Element elements3;
 	/**
 	 * 获取具体景点的详情页
 	 * @param url
@@ -25,8 +25,8 @@ public class Attraction_detail {
 					.get();
 			 elements=document.select("div.detailcon").select("ul");
 			 elements2=document.select("div.toggle_s").select("[itemprop=description]").first();
-			 elements3=document.select("div.item").select("a[href]");
-			System.out.println(elements3.attr("href"));
+			 elements3=document.select("div.item").select("a[href]").select("img").first();
+			System.out.println(elements3.attr("src"));
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
